@@ -1,21 +1,37 @@
 {
-  "name": "coder-tutorials",
-  "description": "website for sharing coding tutorials",
-  "main": "app.js",
-  "authors": [
-    "Glendon Cheney <glendon.cheney@gmail.com>"
-  ],
-  "license": "MIT",
-  "homepage": "https://github.com/gcheney/coder-tutorials",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "bootstrap": "~3.3.6",
-    "font-awesome": "~4.6.3"
-  }
+    "name": "coder-tutorials",
+    "description": "website for sharing coding tutorials",
+    "main": "app.js",
+    "authors": [
+        "Glendon Cheney <glendon.cheney@gmail.com>"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/gcheney/coder-tutorials",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "~3.3.6",
+        "font-awesome": "~4.6.3"
+    },
+    "overrides": {
+        "bootstrap": {
+            "main": [
+                "dist/js/bootstrap.js",
+                "dist/css/bootstrap.min.css",
+                "less/bootstrap.less"
+            ]
+        },
+        "font-awesome": {
+            "main": [
+                "less/font-awesome.less",
+                "css/font-awesome.min.css",
+                "scss/font-awesome.scss"
+            ]
+        }
+    }
 }
