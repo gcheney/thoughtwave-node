@@ -1,11 +1,11 @@
-var express = require('express'),
-    path = require('path'),
-    favicon = require('serve-favicon'),
-    logger = require('morgan'),
+var express      = require('express'),
+    path         = require('path'),
+    favicon      = require('serve-favicon'),
+    logger       = require('morgan'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    routes = require('./app_server/routes/index'),
-    app = express();
+    bodyParser   = require('body-parser'),
+    routes       = require('./app_server/routes/index'),
+    app          = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));

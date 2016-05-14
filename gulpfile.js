@@ -1,10 +1,15 @@
-var gulp    = require('gulp');
-var jshint  = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var nodemon = require('gulp-nodemon');
+var gulp      = require('gulp'),
+    jshint    = require('gulp-jshint'),
+    stylish   = require('jshint-stylish'),
+    nodemon   = require('gulp-nodemon'),
+    useref    = require('gulp-useref'),
+    gulpif    = require('gulp-if'),
+    uglify    = require('gulp-uglify'),
+    cssnano   = require('gulp-cssnano'),
+    del       = require('del');
 
-
-var jsFiles = ['*.js', 'src/**/*.js', 'public/js/*.js'];
+var jsFiles = ['*.js', 'src/**/*.js', 'public/js/*.js'],
+    myFiles = ['./public/css/*.css', './public/js/*.js'];
 
 gulp.task('style', function() {
    return gulp.src(jsFiles)
@@ -16,8 +21,7 @@ gulp.task('inject', function () {
     var widedep = require('wiredep').stream;
     var inject = require('gulp-inject');
 
-    var injectSrc = gulp.src(['./public/css/*.css',
-                              './public/js/*.js'], {
+    var injectSrc = gulp.src(myFiles, {
         read: false
     });
     var injectOptions = {
@@ -36,15 +40,27 @@ gulp.task('inject', function () {
         .pipe(gulp.dest('./app_server/views/partials'));
 });
 
-gulp.task('serve', ['style', 'inject'], function () {
-    var options = {
-        script: './bin/www',
-        delayTime: 1,
-        watch: jsFiles
-    };
+gulp.task('useref', function () {
+    return gulp.src('app/*.html')
+        .pipe(useref())
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.css', cssnano()))
+        .pipe(gulp.dest('public/dist'));
+});
 
-    return nodemon(options)
-        .on('restart', function (en) {
-            console.log('Restarting...');
-        });
+gulp.task('clean:dist', function() {
+  return del.sync('dist');
+})
+
+gulp.task('serve', ['style', 'inject', 'useref'], function () {
+        var options = {
+            script: './bin/www',
+            delayTime: 1,
+            watch: jsFiles
+        };
+
+        return nodemon(options)
+            .on('restart', function (en) {
+                console.log('Restarting...');
+            });
 });
