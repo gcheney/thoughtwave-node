@@ -1,0 +1,21 @@
+{
+  "name": "coder-tutorials",
+  "description": "website for sharing coding tutorials",
+  "main": "app.js",
+  "authors": [
+    "Glendon Cheney <glendon.cheney@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gcheney/coder-tutorials",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.6.3"
+  }
+}

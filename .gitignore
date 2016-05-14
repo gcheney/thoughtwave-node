@@ -16,4 +16,26 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
+# Node and related ecosystem
+# ==========================
+.nodemonignore
+.sass-cache/
 node_modules/
+public/lib/
+app/tests/coverage/
+.idea/
+coverage/
+
+# General
+# =======
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.tmp
+*.bak
+*.swp
+logs/
+build/
