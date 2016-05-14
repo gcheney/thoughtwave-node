@@ -30,10 +30,10 @@ gulp.task('inject', function () {
         ignorePath: '../../public'
     };
 
-    return gulp.src('./src/views/partials/*.ejs')
+    return gulp.src('./app_server/views/partials/*.ejs')
         .pipe(widedep(options))
         .pipe(inject(injectSrc, injectOptions))
-        .pipe(gulp.dest('./src/views/partials'));
+        .pipe(gulp.dest('./app_server/views/partials'));
 });
 
 gulp.task('serve', ['style', 'inject'], function () {
