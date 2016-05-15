@@ -19,7 +19,7 @@ var cssFiles = 'public/css/*.css';
 var jsAssets = ['*.js', 'app_server/**/*.js', jsFiles];
 
 gulp.task('lint', function() {
-    console.log('Checking javascript coding style...');
+    console.log('Checking coding style...');
     
     return gulp.src(jsAssets)
         .pipe(jshint())
@@ -31,13 +31,11 @@ gulp.task('css', function() {
     console.log('Minifying and concatenating CSS...');
 
 	gulp.src(bowerFiles().concat(cssFiles))
-        .pipe(debug({title: 'concat'}))
 		.pipe(filter('**/*.css'))
-        .pipe(debug({title: 'filter'}))
 		.pipe(order(['normalize.css', '*']))
 		.pipe(concat('main.css'))
-        .pipe(rename('main.min.css'))
 		.pipe(cssnano())
+        .pipe(rename('main.min.css'))
 		.pipe(gulp.dest(cssDir));
 });
 
@@ -48,26 +46,22 @@ gulp.task('js', function () {
 		.pipe(filter('**/*.js'))
         .pipe(order(['jquery.min.js', '*']))
 		.pipe(concat('main.js'))
-        .pipe(gulp.dest(jsDir))
-        .pipe(rename('main.min.js'))
 		.pipe(uglify())
+        .pipe(rename('main.min.js'))
 		.pipe(gulp.dest(jsDir));
 });
 
 
 gulp.task('inject', function () {
     console.log('Injecting static files...');
-    var files = ['public/dist/css/*.css', 'public/dist/js/*.js'];
-    var dest = 'app_server/views/partials/*.ejs';
-
-    var injectSrc = gulp.src(files, { read: false });
-    
-    var injectOptions = {
-        ignorePath: '/public'
-    };
-    
-    return gulp.src(source)
-        .pipe(inject(injectSrc, injectOptions))
+    var dest = './app_server/views/partials';
+    var target = gulp.src(dest + '/*.ejs');
+    var sources = gulp.src(
+        ['./public/dist/**/*.js', './public/dist/**/*.css'], 
+        { read: false }
+    );
+ 
+    return target.pipe(inject(sources))
         .pipe(gulp.dest(dest));
 });
 
