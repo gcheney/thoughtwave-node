@@ -1,6 +1,7 @@
 var gulp        = require('gulp'),
     jshint      = require('gulp-jshint'),
     nodemon     = require('gulp-nodemon'),
+    inject      = require('gulp-inject'),
     bowerFiles  = require('main-bower-files'),
     filter      = require('gulp-filter'),
     rename      = require('gulp-rename'),
@@ -12,8 +13,10 @@ var gulp        = require('gulp'),
     runSequence = require('run-sequence');
 
 var jsDir = 'public/dist/js';
+var jsFiles = 'public/js/*.js';
 var cssDir = 'public/dist/css';
-var jsAssets = ['*.js', 'app_server/**/*.js', 'public/js/*.js'];
+var cssFiles = 'public/css/*.css';
+var jsAssets = ['*.js', 'app_server/**/*.js', jsFiles];
 
 gulp.task('lint', function() {
     console.log('Checking javascript coding style...');
@@ -26,14 +29,13 @@ gulp.task('lint', function() {
 
 gulp.task('css', function() {
     console.log('Minifying and concatenating CSS...');
-	var cssFiles = ['public/css/*'];
 
 	gulp.src(bowerFiles().concat(cssFiles))
-        .pipe(debug({title: 'debug'}))
-		.pipe(filter('*.css'))
+        .pipe(debug({title: 'concat'}))
+		.pipe(filter('**/*.css'))
+        .pipe(debug({title: 'filter'}))
 		.pipe(order(['normalize.css', '*']))
 		.pipe(concat('main.css'))
-        .pipe(gulp.dest(cssDir))
         .pipe(rename('main.min.css'))
 		.pipe(cssnano())
 		.pipe(gulp.dest(cssDir));
@@ -41,10 +43,9 @@ gulp.task('css', function() {
 
 gulp.task('js', function () {
     console.log('Minifying and concatenating JS...');
-    var jsFiles = ['public/js/*'];
 
 	gulp.src(bowerFiles().concat(jsFiles))
-		.pipe(filter('*.js'))
+		.pipe(filter('**/*.js'))
         .pipe(order(['jquery.min.js', '*']))
 		.pipe(concat('main.js'))
         .pipe(gulp.dest(jsDir))
@@ -53,40 +54,35 @@ gulp.task('js', function () {
 		.pipe(gulp.dest(jsDir));
 });
 
-/*
+
 gulp.task('inject', function () {
     console.log('Injecting static files...');
-    var minFiles = ['./public/css/*.min.css', './public/js/*.min.js'];
+    var files = ['public/dist/css/*.css', 'public/dist/js/*.js'];
+    var dest = 'app_server/views/partials/*.ejs';
 
-    var injectSrc = gulp.src(minFiles, { read: false });
+    var injectSrc = gulp.src(files, { read: false });
     
     var injectOptions = {
         ignorePath: '/public'
     };
-
-    var options = {
-        bowerJson: require('./bower.json'),
-        directory: './public/lib',
-        ignorePath: '../../public'
-    };
     
-    var wiredep = require('wiredep').stream;
-
     return gulp.src(source)
-        .pipe(wiredep(options))
         .pipe(inject(injectSrc, injectOptions))
         .pipe(gulp.dest(dest));
 });
-*/
+
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('lint', ['css', 'js'], callback);
+    runSequence('lint', 
+                ['css', 'js'], 
+                'inject', 
+                callback);
 });
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-  gulp.watch(jsAssets, ['lint', 'js']);
+    gulp.watch(jsAssets, ['build']);
 });
 
 gulp.task('serve', ['build'], function () {
