@@ -32,6 +32,7 @@ gulp.task('css', function() {
 
 	gulp.src(bowerFiles().concat(cssFiles))
 		.pipe(filter('**/*.css'))
+        .pipe(debug({title: 'css'}))
 		.pipe(order(['normalize.css', '*']))
 		.pipe(concat('main.css'))
 		.pipe(cssnano())
@@ -44,6 +45,7 @@ gulp.task('js', function () {
 
 	gulp.src(bowerFiles().concat(jsFiles))
 		.pipe(filter('**/*.js'))
+        .pipe(debug({title: 'js'}))
         .pipe(order(['jquery.min.js', '*']))
 		.pipe(concat('main.js'))
 		.pipe(uglify())
@@ -51,17 +53,33 @@ gulp.task('js', function () {
 		.pipe(gulp.dest(jsDir));
 });
 
+gulp.task('fonts', function() {
+    var source = ['public/lib/font-awesome/fonts/**.*', 
+                     'public/lib/bootstrap/fonts/**.*'];
+    
+    return gulp.src(source)
+        .pipe(debug({title: 'fonts'}))
+        .pipe(gulp.dest('public/dist/fonts'));
+});
+
 
 gulp.task('inject', function () {
     console.log('Injecting static files...');
+    
     var dest = './app_server/views/partials';
-    var target = gulp.src(dest + '/*.ejs');
-    var sources = gulp.src(
+    var source = './app_server/views/partials/*.ejs';
+    
+    var injectSrc = gulp.src(
         ['./public/dist/**/*.js', './public/dist/**/*.css'], 
         { read: false }
     );
+    
+    var options = {
+        ignorePath: '/public'
+    };
  
-    return target.pipe(inject(sources))
+    return gulp.src(source)
+        .pipe(inject(injectSrc, options))
         .pipe(gulp.dest(dest));
 });
 
@@ -69,7 +87,7 @@ gulp.task('inject', function () {
 gulp.task('build', function (callback) {
     console.log('Building files...');
     runSequence('lint', 
-                ['css', 'js'], 
+                ['css', 'js', 'fonts'], 
                 'inject', 
                 callback);
 });
