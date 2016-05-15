@@ -8,6 +8,7 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     cssnano     = require('gulp-cssnano'),
     order       = require('gulp-order'),
+    debug       = require('gulp-debug'),
     runSequence = require('run-sequence');
 
 var jsDir = 'public/dist/js';
@@ -28,6 +29,7 @@ gulp.task('css', function() {
 	var cssFiles = ['public/css/*'];
 
 	gulp.src(bowerFiles().concat(cssFiles))
+        .pipe(debug({title: 'debug'}))
 		.pipe(filter('*.css'))
 		.pipe(order(['normalize.css', '*']))
 		.pipe(concat('main.css'))
