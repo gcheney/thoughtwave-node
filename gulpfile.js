@@ -1,25 +1,57 @@
 var gulp        = require('gulp'),
     jshint      = require('gulp-jshint'),
-    stylish     = require('jshint-stylish'),
     nodemon     = require('gulp-nodemon'),
-    inject      = require('gulp-inject'),
+    bowerFiles  = require('main-bower-files'),
+    filter      = require('gulp-filter'),
+    rename      = require('gulp-rename'),
     concat      = require('gulp-concat'),
     uglify      = require('gulp-uglify'),
     cssnano     = require('gulp-cssnano'),
+    order       = require('gulp-order'),
     runSequence = require('run-sequence');
 
-var jsFiles = ['*.js', 'src/**/*.js', 'public/js/*.js'];
+var jsDir = 'public/dist/js';
+var cssDir = 'public/dist/css';
+var jsAssets = ['*.js', 'app_server/**/*.js', 'public/js/*.js'];
 
-var source = './app_server/views/partials/*.ejs';
-var dest = './app_server/views/partials';
-
-gulp.task('style', function() {
-    console.log('Checking coding style...');
-    return gulp.src(jsFiles)
+gulp.task('lint', function() {
+    console.log('Checking javascript coding style...');
+    
+    return gulp.src(jsAssets)
         .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
+        .pipe(jshint.reporter('jshint-stylish'));
 });
 
+
+gulp.task('css', function() {
+    console.log('Minifying and concatenating CSS...');
+	var cssFiles = ['public/css/*'];
+
+	gulp.src(bowerFiles().concat(cssFiles))
+		.pipe(filter('*.css'))
+		.pipe(order(['normalize.css', '*']))
+		.pipe(concat('main.css'))
+        .pipe(gulp.dest(cssDir))
+        .pipe(rename('main.min.css'))
+		.pipe(cssnano())
+		.pipe(gulp.dest(cssDir));
+});
+
+gulp.task('js', function () {
+    console.log('Minifying and concatenating JS...');
+    var jsFiles = ['public/js/*'];
+
+	gulp.src(bowerFiles().concat(jsFiles))
+		.pipe(filter('*.js'))
+        .pipe(order(['jquery.min.js', '*']))
+		.pipe(concat('main.js'))
+        .pipe(gulp.dest(jsDir))
+        .pipe(rename('main.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(jsDir));
+});
+
+/*
 gulp.task('inject', function () {
     console.log('Injecting static files...');
     var minFiles = ['./public/css/*.min.css', './public/js/*.min.js'];
@@ -43,40 +75,35 @@ gulp.task('inject', function () {
         .pipe(inject(injectSrc, injectOptions))
         .pipe(gulp.dest(dest));
 });
-
-gulp.task('css', function() {
-    console.log('Compressing CSS...');
-    return gulp.src('public/css/*.css')
-        .pipe(cssnano())
-        .pipe(concat('styles.min.css'))
-        .pipe(gulp.dest('public/css'));
-});
-
-gulp.task('js', function () {
-    console.log('Compressing JS...');
-    return gulp.src('./public/js/*.js')
-        .pipe(uglify())
-        .pipe(concat('scripts.min.js'))
-        .pipe(gulp.dest('public/js'));
-});
+*/
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence(['style', 'css', 'js'],
-                'inject',
-                callback);
+    runSequence('lint', ['css', 'js'], callback);
+});
+
+// Watch Files For Changes
+gulp.task('watch', function () {
+  gulp.watch(jsAssets, ['lint', 'js']);
 });
 
 gulp.task('serve', ['build'], function () {
-    console.log('Serving a gulp...');
-    var options = {
-        script: './bin/www',
-        delayTime: 1,
-        watch: jsFiles
-    };
+    console.log('Serving it up...');
 
-    return nodemon(options)
-        .on('restart', function (en) {
+    return nodemon({
+            script: './bin/www',
+            ext: 'js',
+            delayTime: 1,
+            env: {
+              'NODE_ENV': 'development'
+            }
+        })
+        .on('start', ['watch'])
+        .on('change', ['watch'])
+        .on('restart', function () {
             console.log('Restarting...');
         });
 });
+
+// Default Task
+gulp.task('default', ['serve']);
