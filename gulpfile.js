@@ -1,5 +1,7 @@
 var gulp        = require('gulp'),
     jshint      = require('gulp-jshint'),
+    stylish     = require('jshint-stylish'),
+    bower       = require('gulp-bower'),
     nodemon     = require('gulp-nodemon'),
     inject      = require('gulp-inject'),
     bowerFiles  = require('main-bower-files'),
@@ -12,89 +14,93 @@ var gulp        = require('gulp'),
     debug       = require('gulp-debug'),
     runSequence = require('run-sequence');
 
-var jsDir = 'public/dist/js';
-var jsFiles = 'public/js/*.js';
-var cssDir = 'public/dist/css';
-var cssFiles = 'public/css/*.css';
-var jsAssets = ['*.js', 'app_server/**/*.js', jsFiles];
+var config = {
+    bowerDir: './public/lib',
+    jsDir: 'public/dist/js',
+    jsFiles: 'public/js/*.js',
+    cssDir: 'public/dist/css',
+    cssFiles: 'public/css/*.css',
+    jsAssets: ['*.js', 'app_server/**/*.js', 'public/js/*.js'],
+    fontSrc: [ 'public/lib/font-awesome/fonts/**.*', 
+              'public/lib/bootstrap/fonts/**.*'],
+    fontDir: 'public/dist/fonts',
+    injectFiles: ['./public/dist/**/*.js', './public/dist/**/*.css'],
+    injectSrc: './app_server/views/partials/*.ejs',
+    injectDest: './app_server/views/partials'
+}
+
+gulp.task('bower', function() {
+    return bower()
+        .pipe(gulp.dest(config.bowerDir));
+});
 
 gulp.task('lint', function() {
     console.log('Checking coding style...');
     
-    return gulp.src(jsAssets)
+    return gulp.src(config.jsAssets)
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter(stylish));
 });
 
 
 gulp.task('css', function() {
     console.log('Minifying and concatenating CSS...');
 
-	gulp.src(bowerFiles().concat(cssFiles))
+	gulp.src(bowerFiles().concat(config.cssFiles))
 		.pipe(filter('**/*.css'))
         .pipe(debug({title: 'css'}))
 		.pipe(order(['normalize.css', '*']))
 		.pipe(concat('main.css'))
 		.pipe(cssnano())
         .pipe(rename('main.min.css'))
-		.pipe(gulp.dest(cssDir));
+		.pipe(gulp.dest(config.cssDir));
 });
 
 gulp.task('js', function () {
     console.log('Minifying and concatenating JS...');
 
-	gulp.src(bowerFiles().concat(jsFiles))
+	gulp.src(bowerFiles().concat(config.jsFiles))
 		.pipe(filter('**/*.js'))
         .pipe(debug({title: 'js'}))
         .pipe(order(['jquery.min.js', '*']))
 		.pipe(concat('main.js'))
 		.pipe(uglify())
         .pipe(rename('main.min.js'))
-		.pipe(gulp.dest(jsDir));
+		.pipe(gulp.dest(config.jsDir));
 });
 
 gulp.task('fonts', function() {
-    var source = ['public/lib/font-awesome/fonts/**.*', 
-                     'public/lib/bootstrap/fonts/**.*'];
     
-    return gulp.src(source)
+    return gulp.src(config.fontSrc)
         .pipe(debug({title: 'fonts'}))
-        .pipe(gulp.dest('public/dist/fonts'));
+        .pipe(gulp.dest(config.fontDir));
 });
 
 
 gulp.task('inject', function () {
-    console.log('Injecting static files...');
+    console.log('Injecting minified files...');
     
-    var dest = './app_server/views/partials';
-    var source = './app_server/views/partials/*.ejs';
-    
-    var injectSrc = gulp.src(
-        ['./public/dist/**/*.js', './public/dist/**/*.css'], 
-        { read: false }
-    );
+    var files = gulp.src(config.injectFiles, {read: false});
     
     var options = {
         ignorePath: '/public'
     };
  
-    return gulp.src(source)
-        .pipe(inject(injectSrc, options))
-        .pipe(gulp.dest(dest));
+    return gulp.src(config.injectSrc)
+        .pipe(inject(files, options))
+        .pipe(gulp.dest(config.injectDest));
 });
 
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('lint', 
-                ['css', 'js', 'fonts'], 
-                'inject', 
-                callback);
+    runSequence('lint', ['css', 'js', 'fonts'], 
+                'inject', callback);
 });
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch(jsAssets, ['build']);
+    gulp.watch(config.jsAssets, ['build']);
 });
 
 gulp.task('serve', ['build'], function () {
@@ -102,7 +108,6 @@ gulp.task('serve', ['build'], function () {
 
     return nodemon({
             script: './bin/www',
-            ext: 'js',
             delayTime: 1,
             env: {
               'NODE_ENV': 'development'
