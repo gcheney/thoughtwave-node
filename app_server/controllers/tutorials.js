@@ -4,16 +4,11 @@ module.exports.index = function(req, res) {
 };
 
 /* GET tutorial view page */
-module.exports.view = function(req, res) {
-    res.render('tutorials/view', { title: 'Coder Tutorials - View' });
+module.exports.read = function(req, res) {
+    res.render('tutorials/read', { title: 'Coder Tutorials - View' });
 };
 
 /* GET tutorial create page */
 module.exports.create = function(req, res) {
     res.render('tutorials/create', { title: 'Coder Tutorials - Create a new tutorial' });
-};
-
-/* GET add review page */
-module.exports.addReview = function(req, res) {
-    res.render('tutorials/reviews/add', { title: 'Coder Tutorials - Add a Review' });
 };
