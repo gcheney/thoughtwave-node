@@ -1,4 +1,4 @@
-
+/* General Styles */
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;
@@ -49,6 +49,8 @@ hr.small {
   border-width: 4px;
   border-color: white;
 }
+
+/* Navbar Styles */
 
 .navbar-custom {
   position: absolute;
@@ -151,6 +153,8 @@ hr.small {
       }
     }
 
+/* Header Styles */
+
 .intro-header {
   background-color: #808080;
   background: no-repeat center center;
@@ -241,6 +245,8 @@ hr.small {
       }
     }
 
+/* Post Preview Styles */
+
 .post-preview > a {
   color: #404040;
 }
@@ -287,6 +293,7 @@ hr.small {
       }
     }
 
+
 .section-heading {
   font-size: 36px;
   margin-top: 60px;
@@ -304,6 +311,8 @@ hr.small {
   border-bottom-left-radius: 5px;
 }
 
+/* Footer Styles */
+
 footer {
   padding: 50px 0 65px;
 }
@@ -319,6 +328,8 @@ footer .copyright {
   margin-bottom: 0;
 }
 
+/* Form Styles */
+
 .floating-label-form-group {
   font-size: 14px;
   position: relative;
@@ -331,10 +342,9 @@ footer .copyright {
     .floating-label-form-group textarea {
       z-index: 1;
       position: relative;
-      padding-right: 0;
-      padding-left: 0;
-      border: none;
-      border-radius: 0;
+      padding-right: 5px;
+      padding-left: 5px;
+      border-radius: 5px;
       font-size: 1.5em;
       background: none;
       box-shadow: none !important;
@@ -343,6 +353,7 @@ footer .copyright {
 
     .floating-label-form-group label {
       display: block;
+      z-index: 0;
       z-index: 0;
       position: relative;
       top: 2em;
@@ -376,6 +387,8 @@ form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eeeeee;
 }
 
+/* Button Styles */
+
 .btn {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
@@ -397,6 +410,8 @@ form .row:first-child .floating-label-form-group {
   border: 1px solid #0085a1;
   color: white;
 }
+
+/* Pager Styles */
 
 .pager {
   margin: 20px 0 0;
@@ -441,6 +456,8 @@ form .row:first-child .floating-label-form-group {
   text-shadow: none;
   background: #0085a1;
 }
+
+/* Image Styles */
 
 img::selection {
   color: white;
