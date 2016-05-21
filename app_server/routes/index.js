@@ -12,6 +12,6 @@ router.get('/contact', ctrlHome.contact);
 
 /* Tutorial pages */
 router.get('/tutorials', ctrlTutorials.index);
-router.get('/tutorials/view', ctrlTutorials.read);
+router.get('/tutorials/read', ctrlTutorials.read);
 
 module.exports = router;
