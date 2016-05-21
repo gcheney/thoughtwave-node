@@ -27,14 +27,14 @@ var config = {
     injectFiles: ['./public/dist/**/*.js', './public/dist/**/*.css'],
     injectSrc: './app_server/views/partials/*.ejs',
     injectDest: './app_server/views/partials'
-}
+};
 
 gulp.task('bower', function() {
     return bower()
         .pipe(gulp.dest(config.bowerDir));
 });
 
-gulp.task('lint', function() {
+gulp.task('jslint', function() {
     console.log('Checking coding style...');
     
     return gulp.src(config.jsAssets)
@@ -94,13 +94,13 @@ gulp.task('inject', function () {
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('lint', ['css', 'js', 'fonts'], 
+    runSequence('jslint', ['css', 'js', 'fonts'], 
                 'inject', callback);
 });
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch(config.jsAssets, ['build']);
+    gulp.watch(config.jsAssets, ['jslint']);
 });
 
 gulp.task('serve', ['build'], function () {
