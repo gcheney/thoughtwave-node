@@ -1,3 +1,3 @@
-# Coder Tutorials
+# Thought Wave
 
-This is the main repository for the code that powers [Coder Tutorials](http://www.codertutorials.xyz)
+This is the main repository for the code that powers the [Thought Wave](http://www.thoughtwave.xyz) blogging platform
