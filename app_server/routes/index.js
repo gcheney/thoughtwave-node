@@ -1,17 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var ctrlHome = require('../controllers/home');
-var ctrlTutorials = require('../controllers/tutorials');
+var homeController = require('../controllers/home');
+var thoughtsController = require('../controllers/thoughts');
 
 
 /* Home Pages */
-router.get('/', ctrlHome.index);
-router.get('/about', ctrlHome.about);
-router.get('/contact', ctrlHome.contact);
+router.get('/', homeController.index);
+router.get('/about', homeController.about);
+router.get('/contact', homeController.contact);
 
 
 /* Tutorial pages */
-router.get('/tutorials', ctrlTutorials.index);
-router.get('/tutorials/read', ctrlTutorials.read);
+router.get('/thoughts', thoughtsController.index);
+router.get('/thoughts/read', thoughtsController.read);
+router.get('/thoughts/create', thoughtsController.create);
 
 module.exports = router;
