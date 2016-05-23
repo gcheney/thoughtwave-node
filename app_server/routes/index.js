@@ -10,7 +10,7 @@ router.get('/about', homeController.about);
 router.get('/contact', homeController.contact);
 
 
-/* Tutorial pages */
+/* Thought pages */
 router.get('/thoughts', thoughtsController.index);
 router.get('/thoughts/read', thoughtsController.read);
 router.get('/thoughts/create', thoughtsController.create);
