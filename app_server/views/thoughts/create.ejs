@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<% include ../partials/head %>
+
+<body>
+    <!-- Page Header -->
+    <% include ../partials/header %>
+    
+    <% include ../partials/navigation %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">    
+                <form>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Thought Title</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Title">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleSelect1">Category</label><br />
+                        <small class="text-muted">Select the best category for your thought.</small>
+                        <select class="form-control" id="exampleSelect1">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleTextarea">Thought Content</label><br />
+                        <small class="text-muted">We support <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</small>
+                        <textarea class="form-control" id="exampleTextarea" rows="20"></textarea>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleInputFile">Header Image</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Image link">
+                        <small class="text-muted">Link to the image you want used in the header of your thought.</small>
+                    </fieldset>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Allow Comments</label>
+                    </div>
+                    <button type="submit" class="btn">Save</button>
+                    <button type="submit" class="btn btn-primary">Publish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <% include ../partials/footer %>
+
+    <!-- Scripts -->
+    <% include ../partials/scripts %>
+
+</body>
+
+</html>
