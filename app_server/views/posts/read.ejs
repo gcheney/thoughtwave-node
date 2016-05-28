@@ -26,17 +26,17 @@
             
              <!-- Author details/bio -->
             <div class="well well-lg clearfix">
-                <a href="#"><h2><%= post.user.fullname %></h2></a>
+                <a href="#"><h2><%= post.author.fullname %></h2></a>
                 <a href="#" class="pull-left">
-                    <img alt="user image" src="<%= post.user.avatar %>" class="img-circle bio-img">
+                    <img alt="user image" src="<%= post.author.avatar %>" class="img-circle bio-img">
                 </a>
                 <p class="col-md-9 pull-right">
-                    <%= post.user.bio %>
+                    <%= post.author.bio %>
                 </p>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
                         <li>
-                            <a href="#">
+                            <a href="<%= post.author.twitter %>" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<%= post.author.facebook %>" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -52,10 +52,18 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<%= post.author.github %>" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<%= post.author.linkedin %>" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
