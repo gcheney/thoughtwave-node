@@ -11,8 +11,8 @@ router.get('/contact', homeController.contact);
 
 
 /* Thought pages */
-router.get('/thoughts', thoughtsController.index);
-router.get('/thoughts/read', thoughtsController.read);
-router.get('/thoughts/create', thoughtsController.create);
+router.get('/browse', thoughtsController.index);
+router.get('/read', thoughtsController.read);
+router.get('/create', thoughtsController.create);
 
 module.exports = router;
