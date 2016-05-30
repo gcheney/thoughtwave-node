@@ -29,62 +29,22 @@ module.exports.read = function(req, res) {
                     avatar: 'http://api.randomuser.me/portraits/thumb/men/46.jpg',
                     fullname: 'John James'
                 },
-                timestamp: {
-                    date: 'August 25, 2014',
-                    time: '9:30 PM'
-                },
-                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
-                replies: [{
-                    
-                }]
+                timestamp: 'August 29, 2014',
+                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.'
             }, {
                 author: {
                     avatar: 'http://api.randomuser.me/portraits/thumb/women/46.jpg',
                     fullname: 'Mary Jane'
                 },
-                timestamp: {
-                    date: 'August 25, 2014',
-                    time: '10:30 PM'
-                },
+                timestamp: 'August 27, 2014',
                 content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
-                replies: [{
-                    author: {
-                        avatar: 'http://api.randomuser.me/portraits/thumb/women/26.jpg',
-                        fullname: 'Mary Jane'
-                    },
-                    timestamp: {
-                        date: 'August 25, 2014',
-                        time: '10:30 PM'
-                    },
-                    content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
-                    replies: [{
-                        author: {
-                            avatar: 'http://api.randomuser.me/portraits/thumb/men/46.jpg',
-                            fullname: 'Mary Jane'
-                        },
-                        timestamp: {
-                            date: 'August 25, 2014',
-                            time: '10:30 PM'
-                        },
-                        content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
-                        replies: [{
-
-                        }]
-                    }]
-                }, {
-                     author: {
-                        avatar: 'http://api.randomuser.me/portraits/thumb/men/29.jpg',
-                        fullname: 'Mary Jane'
-                    },
-                    timestamp: {
-                        date: 'August 25, 2014',
-                        time: '10:30 PM'
-                    },
-                    content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
-                    replies: [{
-                        
-                    }]
-                }]
+            }, {
+                 author: {
+                    avatar: 'http://api.randomuser.me/portraits/thumb/women/29.jpg',
+                    fullname: 'Betty Sue'
+                },
+                timestamp: 'August 25, 2014',
+                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.'
             }]
         }
     });
