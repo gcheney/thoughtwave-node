@@ -1,5 +1,5 @@
+// Navigation script to Show Header on Scroll-Up
 $(document).ready(function() {
-    // Navigation script to Show Header on Scroll-Up
     var MQL = 1170;
 
     //primary navigation slide-in effect
@@ -28,4 +28,15 @@ $(document).ready(function() {
             }
         );
     }
+});
+
+//script to fil in stars on hover 
+$(document).ready(function() {
+    $('.star').hover(function () {
+            $(this).addClass('fa-star');
+            $(this).removeClass('fa-star-o'); 
+        }, function () {
+            $(this).addClass('fa-star-o');
+            $(this).removeClass('fa-star');
+        });
 });

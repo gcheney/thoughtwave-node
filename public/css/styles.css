@@ -304,19 +304,12 @@ a {
       margin-bottom: 10px;
     }
 
-user-img {
-    width: 100px;
-    height: 100px;
-    margin-right: 5px;
-    display: none;
-}
-
-.post-preview > .post-meta {
-  color: #808080;
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0;
-}
+    .post-preview > .post-meta {
+      color: #808080;
+      font-size: 18px;
+      font-style: italic;
+      margin-top: 0;
+    }
 
     .post-preview > .post-meta > a {
       text-decoration: none;
