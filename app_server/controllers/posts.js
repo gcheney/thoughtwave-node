@@ -30,7 +30,8 @@ module.exports.read = function(req, res) {
                     fullname: 'John James'
                 },
                 timestamp: 'August 29, 2014',
-                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.'
+                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                stars: 22
             }, {
                 author: {
                     avatar: 'http://api.randomuser.me/portraits/thumb/women/46.jpg',
@@ -38,13 +39,15 @@ module.exports.read = function(req, res) {
                 },
                 timestamp: 'August 27, 2014',
                 content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                stars: 15
             }, {
                  author: {
                     avatar: 'http://api.randomuser.me/portraits/thumb/women/29.jpg',
                     fullname: 'Betty Sue'
                 },
                 timestamp: 'August 25, 2014',
-                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.'
+                content: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                stars: 12
             }]
         }
     });
