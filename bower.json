@@ -39,11 +39,6 @@
         "main": [
             "dist/jquery.min.js"
         ]
-    },
-    "underscore": {
-        "main": [
-            "underscore-min.js"
-        ]
     }
   }
 }
