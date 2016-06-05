@@ -35,9 +35,9 @@
             'searchreplace visualblocks code fullscreen',
             'insertdatetime media table contextmenu paste code'
         ],
-        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist        outdent indent | link image',
+        toolbar: 'insertfile undo redo | styleselect  bold italic | alignleft aligncenter alignright alignjustify | bullist numlist        outdent indent | link image | sizeselect | fontselect |  fontsizeselect',
         theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
-        font_size_style_values : "10px,12px,13px,14px,16px,18px,20px"
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt"
     });
     </script>
 
@@ -68,12 +68,10 @@
                         <label for="exampleSelect1">Category</label><br />
                         <small class="text-muted">Select the best category for your thought.</small>
                         <select class="form-control" id="exampleSelect1">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
+                            <% categories.forEach(function(category) { %>
+                              <option><%= category %></option>
+                            <% }); %>
+                         </select>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="exampleTextarea">Content</label><br />
