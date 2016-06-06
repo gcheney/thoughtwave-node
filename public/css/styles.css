@@ -516,6 +516,10 @@ form .row:first-child .floating-label-form-group {
     cursor: pointer;
 }
 
+.img-responsive {
+    margin-top: 15px;
+}
+
 img::selection {
   color: white;
   background: transparent;
