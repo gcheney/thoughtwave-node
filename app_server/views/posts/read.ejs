@@ -8,14 +8,12 @@
     <% include ../partials/navigation %>
 
     <!-- Post Header -->
-    <header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+    <header class="intro-header" style="background-image: url('/img/jobs-zombie.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1><%= post.title %></h1>
-                        <h2 class="subheading"><%= post.subtitle %></h2>
-                        <span class="meta">Posted by <a href="#"><%= post.author.username %></a> on <%= post.timestamp %></span>
+                        <h1><br /></h1>
                     </div>
                 </div>
             </div>
@@ -27,6 +25,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="jumbotron">
+                        <h1><%= post.title %></h1>
+                        <h3><%= post.subtitle %></h3>
+                    </div>
+                    <img alt="User Image" src="<%= post.author.avatar %>" class="pull-left user-img img-circle">
+                    <p class="small meta"><em>Posted by <a href="#"><%= post.author.username %></a> on <%= post.timestamp %></em></p>
+                    <hr />
                     <%- post.content %>
                 </div>             
             </div>
@@ -46,7 +51,7 @@
                 <p class="col-md-9 pull-right">
                     <%= post.author.bio %>
                 </p>
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
                     <!-- author social links -->
                     <ul class="list-inline text-center">
                         <li>

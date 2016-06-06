@@ -166,22 +166,23 @@ a {
 
 /* Header Styles */
 
-.intro-header {
-  background-color: #808080;
-  background: no-repeat center center;
-  background-attachment: scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  margin-bottom: 50px;
-}
+    .intro-header {
+      background-color: #808080;
+      background: no-repeat center center;
+      background-attachment: scroll;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+      margin-bottom: 50px;
+    }
 
     .intro-header .site-heading,
     .intro-header .post-heading,
     .intro-header .page-heading {
       padding: 100px 0 50px;
       color: white;
+      text-shadow: 3px 3px black;
     }
 
     @media only screen and (min-width: 768px) {
@@ -220,17 +221,17 @@ a {
       }
     }
 
-    .intro-header .post-heading h1 {
+    .post-heading h1 {
       font-size: 35px;
     }
 
-    .intro-header .post-heading .subheading,
-    .intro-header .post-heading .meta {
+    .post-heading .subheading,
+    .post-heading .meta {
       line-height: 1.1;
       display: block;
     }
 
-    .intro-header .post-heading .subheading {
+    .post-heading .subheading {
       font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 24px;
       margin: 10px 0 30px;
@@ -242,8 +243,6 @@ a {
       font-style: italic;
       font-weight: 300;
       font-size: 20px;
-    }
-    .intro-header .post-heading .meta a {
       color: white;
     }
 

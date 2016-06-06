@@ -10,8 +10,8 @@ module.exports.read = function(req, res) {
     res.render('posts/read', { 
         title: 'Thought Wave - Read',
         post: {
-            title: 'Man must explore, and this is exploration at its greatest',
-            subitle: 'Problems look mighty small from 150 miles up',
+            title: 'Zombie Steve Jobs continues meteoric rise to the top',
+            subtitle: 'iPhreaks renew the march to DC',
             author: {
                 username: 'Tester1',
                 fullname: 'Johnny Clean Cheeks',
