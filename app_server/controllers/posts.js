@@ -58,6 +58,6 @@ module.exports.read = function(req, res) {
 module.exports.new = function(req, res) {
     res.render('posts/new', { 
         title: 'Thought Wave - Create a New Thought', 
-        categories: ['Technology', 'Politics', 'Arts & Culture', 'Life']
+        categories: ['Technology', 'Politics', 'Arts', 'Life', 'World', 'Sports']
     });
 };
