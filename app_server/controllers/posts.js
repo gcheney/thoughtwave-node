@@ -3,14 +3,11 @@
 /* GET thoughts index page */
 module.exports.index = function(req, res) {
     var category = req.params.category;
-    categoryName = category.charAt(0).toUpperCase() + category.slice(1);
-    var title = 'Thought Wave - ' + categoryName;
+    category = category.charAt(0).toUpperCase() + category.slice(1);
+    var title = 'Thought Wave - ' + category;
     res.render('posts/browse', { 
         title: title,
-        category: { 
-            name: categoryName,
-            backgroundImage: '/img/backgrounds/politics.jpg'
-        },
+        category: category,
         posts: [{
             title: 'Bernie Sanders rally draws massive crowd',
             date: 'September 18, 2015',
