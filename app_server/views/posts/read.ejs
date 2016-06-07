@@ -116,9 +116,24 @@
             <!-- Posted Comments -->
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
                 <% post.comments.forEach(function(comment) { %>
-                    <% include ../partials/comment %>
+                    <!-- Comment -->
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="<%= comment.author.avatar %>" alt="User Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><%= comment.author.fullname %>
+                                <small><%= comment.timestamp %></small>
+                                <a href="#"><i class="fa fa-star-o star" aria-hidden="true"></i></a>
+                                <strong class="text-info"><%= comment.stars %></strong>
+                            </h4>
+                            <%= comment.content %>
+                        </div>
+                    </div>
+                    <!-- /comment -->
                 <% }); %>
             </div>
+            <!-- /comments -->
         </div>
     </div>
     
