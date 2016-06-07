@@ -3,6 +3,7 @@
 /* GET thoughts index page */
 module.exports.index = function(req, res) {
     var category = req.params.category;
+    category = category.charAt(0).toUpperCase() + category.slice(1);
     var title = 'Thought Wave - ' + category;
     res.render('posts/browse', { 
         title: title,
