@@ -2,7 +2,12 @@
 
 /* GET thoughts index page */
 module.exports.index = function(req, res) {
-    res.render('posts/browse', { title: 'Thought Wave - Thoughts' });
+    var category = req.params.category;
+    var title = 'Thought Wave - ' + category;
+    res.render('posts/browse', { 
+        title: title,
+        category: category 
+    });
 };
 
 /* GET thoughts view page */

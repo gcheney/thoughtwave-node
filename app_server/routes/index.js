@@ -11,7 +11,7 @@ router.get('/contact', homeController.contact);
 
 
 /* Thought pages */
-router.get('/browse', postsController.index);
+router.get('/browse/:category', postsController.index);
 router.get('/read', postsController.read);
 router.get('/new', postsController.new);
 
