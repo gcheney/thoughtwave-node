@@ -13,9 +13,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="page-heading">
-                        <h1>Contact Me</h1>
+                        <h1><%= header.title %></h1>
                         <hr class="small">
-                        <span class="subtitle">Have questions? I have answers (maybe).</span>
+                        <span class="subtitle"><%= header.subtitle %></span>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
+                <p class="lead">
+                    <%= lead %>
+                </p>
                 <form name="sentMessage" id="contactForm" novalidate>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -59,7 +61,7 @@
                 </form>
                 <ul class="list-inline text-center">
                     <li>
-                        <a href="#">
+                        <a href="<%= social.twitter %>" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -67,15 +69,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<%= social.linkedin %>" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<%= social.github %>" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

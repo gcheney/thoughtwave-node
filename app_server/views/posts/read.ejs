@@ -8,7 +8,7 @@
     <% include ../partials/navigation %>
 
     <!-- Post Header -->
-    <header class="intro-header" style="background-image: url('/img/jobs-zombie.jpg')">
+    <header class="intro-header" style="background-image: url('<%= post.imageUrl %>')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -101,11 +101,11 @@
             <!-- Blog Comments -->
             
             <!-- Comments Form -->
-            <div class="well">
+            <div class="well col-lg-10 col-lg-offset-1">
                 <h4>Leave a Comment:</h4>
                 <form role="form">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

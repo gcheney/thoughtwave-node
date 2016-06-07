@@ -18,6 +18,7 @@ module.exports.read = function(req, res) {
         post: {
             title: 'Zombie Steve Jobs continues meteoric rise to the top',
             subtitle: 'iPhreaks renew the march to DC',
+            imageUrl: '/img/jobs-zombie.jpg',
             author: {
                 username: 'Tester1',
                 fullname: 'Johnny Clean Cheeks',
