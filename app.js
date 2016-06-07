@@ -4,6 +4,7 @@ var express      = require('express'),
     logger       = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
+    uncapitalize = require('express-uncapitalize'),
     routes       = require('./app_server/routes/index'),
     app          = express();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(uncapitalize());
 app.use('/', routes);
 
 // catch 404 and forward to error handler
