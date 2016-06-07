@@ -8,12 +8,12 @@
     <% include ../partials/navigation %>
 
     <!-- Browse Header -->
-    <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <header class="intro-header" style="background-image: url('<%= category.backgroundImage %>')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1><%= category %></h1>
+                        <h1><%= category.name %></h1>
                         <hr class="large">
                     </div>
                 </div>
@@ -27,105 +27,40 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
-            <div class="content-section-a">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-sm-6">
-                            <div class="post-preview">
-                                <hr class="section-heading-spacer">
-                                <div class="clearfix"></div>
-                                <a target="_blank" href="http://join.deathtothestockphoto.com/">
-                                    <h2 class="section-heading">Bernie Sanders rally draws massive crowd</h2>
-                                </a>
-                                <img alt="User Image" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" class="pull-left user-img img-circle">
-                                <p class="text-muted">Posted by <a href="#">Jack Johnson</a> on September 18, 2015 in <a href="/read">Politics</a></p>
-                                <p class="lead">
-                                    Senator Bernie Sanders defiantly vowed again on Sunday to take his campaign to the Democratic National Convention this summer, even as Hillary Clinton edged closer to clinching the party’s presidential nomination and the final primary contests drew near.
-                                </p>
-                                <hr />
-                                <a href="#" class="btn">Read More &rarr;</a>
+            <% posts.forEach(function(post) { %>
+                <div class="content-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                                <div class="post-preview">
+                                    <div class="clearfix"></div>
+                                    <a target="_blank" href="/read">
+                                        <h1 class="section-heading text-center"><%= post.title %></h1>
+                                    </a>
+                                    <img class="img-responsive" src="<%= post.imageUrl %>" alt="Article Image">
+                                    <div class="well well-lg clearfix">
+                                        <img alt="User Image" src="<%= post.author.avatar %>" 
+                                             class="pull-left user-img img-circle">
+                                        <p class="text-muted">
+                                            Posted by <a href="#"><%= post.author.name %></a> on <%= post.date %>
+                                        </p>
+                                        <p class="lead">
+                                            <%= post.lead %>
+                                        </p>
+                                        <hr />
+                                        <a href="/read" class="btn pull-right">
+                                            Read More <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-lg-offset-1 col-sm-6">
-                            <img class="img-responsive" src="/img/rally.jpg" alt="Article Image">
-                        </div>
                     </div>
-
+                    <!-- /.container -->
                 </div>
-                <!-- /.container -->
-            </div>
-            <!-- /.content-section-a -->
-
-            <div class="content-section-b">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                            <div class="post-preview">
-                                <hr class="section-heading-spacer">
-                                <div class="clearfix"></div>
-                                <a target="_blank" href="http://www.psdcovers.com/">
-                                    <h2 class="section-heading">Syrian is Bleeding Silently</h2>
-                                </a>
-                                <img alt="User Image" src="http://api.randomuser.me/portraits/thumb/women/44.jpg" class="pull-left user-img img-circle">
-                                <p class="text-muted">Posted by <a href="#">Jackie Kim</a> on October 20, 2014 in <a href="">World</a></p>
-                                <p class="lead">
-                                    Initially, the Syrian government relied mainly on its armed forces, but since 2014 local protection units made up of volunteers known as National Defence Force have come to play a larger role, gradually becoming the primary military force of the Syrian state. From the early stages, the Syrian government received technical, financial, military and political support from Russia...
-                                </p>
-                                <hr />
-                                <a href="#" class="btn">Read More &rarr;</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                            <img class="img-responsive" src="/img/syria.jpg" alt="Syria">
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container -->
-
-            </div>
-            <!-- /.content-section-b -->
-
-            <div class="content-section-a">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-sm-6">
-                            <div class="post-preview">
-                                <hr class="section-heading-spacer">
-                                <div class="clearfix"></div>
-                                <a target="_blank" href="/read">
-                                    <h2 class="section-heading">Apple is Making a Comeback with Zombie Steve Jobs</h2>
-                                </a>
-                                <img alt="User Image" src="http://api.randomuser.me/portraits/thumb/women/48.jpg" class="pull-left user-img img-circle">
-                                <p class="text-muted">Posted by <a href="#">Ivanna Evans</a> on September 24, 2014 in <a href="">Technology</a></p>
-                                <p class="lead">
-                                    Zombie Steve Jobs has been leading Apple on to great things this quarter, as the stocks continue to soar pending his undead announcement of the Zombiphone. This is shaping up to be an exciting week int he world of technology. 
-                                </p>
-                                <hr />
-                                <a href="#" class="btn">Read More &rarr;</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-lg-offset-1 col-sm-6">
-                            <img class="img-responsive" src="/img/jobs-zombie.jpg" alt="Steve Jobs">
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container -->
-
-            </div>
-            
-            
-            <!-- /.content-section-a -->
-
-            <!-- Pager -->
-            <div class="pager">
-                <div class="next">
-                    <a href="#" class="btn btn-primary pull-right pager">See More &rarr;</a>
-                </div>
-            </div>
-            <!-- /pager -->
-            
+                <!-- /.content-section -->
+            <% }); %>   
+            <!-- /forEach -->
         </div>
         <!-- /row -->
     </div>

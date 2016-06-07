@@ -3,11 +3,25 @@
 /* GET thoughts index page */
 module.exports.index = function(req, res) {
     var category = req.params.category;
-    category = category.charAt(0).toUpperCase() + category.slice(1);
-    var title = 'Thought Wave - ' + category;
+    categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+    var title = 'Thought Wave - ' + categoryName;
     res.render('posts/browse', { 
         title: title,
-        category: category 
+        category: { 
+            name: categoryName,
+            backgroundImage: '/img/backgrounds/politics.jpg'
+        },
+        posts: [{
+            title: 'Bernie Sanders rally draws massive crowd',
+            date: 'September 18, 2015',
+            category: 'Politics',
+            lead: 'Senator Bernie Sanders defiantly vowed again on Sunday to take his campaign to the Democratic National Convention this summer, even as Hillary Clinton edged closer to clinching the party’s presidential nomination and the final primary contests drew near.',
+            imageUrl: '/img/rally.jpg',
+            author: {
+                avatar: 'http://api.randomuser.me/portraits/thumb/men/58.jpg',
+                name: 'Jack Johnson'
+            }
+        }]
     });
 };
 
