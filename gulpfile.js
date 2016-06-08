@@ -1,6 +1,7 @@
 var gulp        = require('gulp'),
     jshint      = require('gulp-jshint'),
     stylish     = require('jshint-stylish'),
+    imagemin    = require('gulp-imagemin'),
     bower       = require('gulp-bower'),
     nodemon     = require('gulp-nodemon'),
     inject      = require('gulp-inject'),
@@ -76,6 +77,13 @@ gulp.task('fonts', function() {
         .pipe(gulp.dest(config.fontDir));
 });
 
+gulp.task('images', function(){
+    return gulp.src('./public/img/**')
+        .pipe(imagemin())
+        .pipe(debug({title: 'images'}))
+        .pipe(gulp.dest('./public/dist/img'));
+});
+
 
 gulp.task('inject', function () {
     console.log('Injecting minified files...');
@@ -94,7 +102,7 @@ gulp.task('inject', function () {
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('jslint', ['css', 'js', 'fonts'], 
+    runSequence('jslint', ['css', 'js', 'fonts', 'images'], 
                 'inject', callback);
 });
 
