@@ -1,8 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-<<<<<<< HEAD
-// Navigation script to Show Header on Scroll-Up
-$(document).ready(function() {
-=======
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -9823,7 +9819,6 @@ return jQuery;
 var $ = require('jquery');
 
 module.exports = function() {
->>>>>>> browserify
     var MQL = 1170;
 
     //primary navigation slide-in effect
@@ -9852,13 +9847,6 @@ module.exports = function() {
             }
         );
     }
-<<<<<<< HEAD
-});
-
-//script to fil in stars on hover 
-$(document).ready(function() {
-    $('.star').hover(function () {
-=======
 };
 },{"jquery":1}],3:[function(require,module,exports){
 var $ = require('jquery');
@@ -9874,17 +9862,11 @@ var $ = require('jquery');
 
 module.exports = function(selector) {
     $(selector).hover(function () {
->>>>>>> browserify
             $(this).addClass('fa-star');
             $(this).removeClass('fa-star-o'); 
         }, function () {
             $(this).addClass('fa-star-o');
             $(this).removeClass('fa-star');
         });
-<<<<<<< HEAD
-});
-},{}]},{},[1]);
-=======
 };
 },{"jquery":1}]},{},[3]);
->>>>>>> browserify
