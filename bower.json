@@ -1,5 +1,5 @@
 {
-  "name": "coder-tutorials",
+  "name": "thoughtwave",
   "description": "website for sharing coding tutorials",
   "main": "app.js",
   "authors": [
@@ -17,8 +17,7 @@
   "dependencies": {
     "bootstrap": "~3.3.6",
     "font-awesome": "~4.6.3",
-    "normalize-css": "~4.1.1",
-    "underscore": "~1.8.3"
+    "normalize-css": "~4.1.1"
   },
   "overrides": {
     "bootstrap": {
@@ -33,11 +32,6 @@
             "less/font-awesome.less",
             "css/font-awesome.min.css",
             "scss/font-awesome.scss"
-        ]
-    },
-    "jquery": {
-        "main": [
-            "dist/jquery.min.js"
         ]
     }
   }

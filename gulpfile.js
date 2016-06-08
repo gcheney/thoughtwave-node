@@ -13,18 +13,24 @@ var gulp        = require('gulp'),
     cssnano     = require('gulp-cssnano'),
     order       = require('gulp-order'),
     debug       = require('gulp-debug'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    browserify  = require('browserify'),
+    source      = require('vinyl-source-stream');
 
 var config = {
     bowerDir: './public/lib',
-    jsDir: 'public/dist/js',
-    jsFiles: 'public/js/*.js',
-    cssDir: 'public/dist/css',
-    cssFiles: 'public/css/*.css',
+    jsDest: 'public/dist/js',
+    jsSrc: 'public/js/scripts.js',
+    jsDir: 'public/js',
+    jsBundle: './public/js/bundle.js',
     jsAssets: ['*.js', 'app_server/**/*.js', 'public/js/*.js'],
+    cssDest: 'public/dist/css',
+    cssSrc: 'public/css/*.css',
     fontSrc: [ 'public/lib/font-awesome/fonts/**.*', 
               'public/lib/bootstrap/fonts/**.*'],
-    fontDir: 'public/dist/fonts',
+    fontDest: 'public/dist/fonts',
+    imageSrc: './public/img/**',
+    imageDest: './public/dist/img',
     injectFiles: ['./public/dist/**/*.js', './public/dist/**/*.css'],
     injectSrc: './app_server/views/partials/*.ejs',
     injectDest: './app_server/views/partials'
@@ -47,41 +53,45 @@ gulp.task('jslint', function() {
 gulp.task('css', function() {
     console.log('Minifying and concatenating CSS...');
 
-	gulp.src(bowerFiles().concat(config.cssFiles))
+	gulp.src(bowerFiles().concat(config.cssSrc))
 		.pipe(filter('**/*.css'))
         .pipe(debug({title: 'css'}))
 		.pipe(order(['normalize.css', '*']))
 		.pipe(concat('main.css'))
 		.pipe(cssnano())
         .pipe(rename('main.min.css'))
-		.pipe(gulp.dest(config.cssDir));
+		.pipe(gulp.dest(config.cssDest));
 });
 
-gulp.task('js', function () {
-    console.log('Minifying and concatenating JS...');
-
-	gulp.src(bowerFiles().concat(config.jsFiles))
-		.pipe(filter('**/*.js'))
-        .pipe(debug({title: 'js'}))
-        .pipe(order(['jquery.min.js', '*']))
-		.pipe(concat('main.js'))
-		.pipe(uglify())
-        .pipe(rename('main.min.js'))
-		.pipe(gulp.dest(config.jsDir));
-});
-
-gulp.task('fonts', function() {
+gulp.task('browserify', function() {
+    console.log('Bundling JS files...');
     
+    return browserify(config.jsSrc)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest(config.jsDir));
+});
+
+gulp.task('uglify', ['browserify'], function() {
+    console.log('Minifying JS files...');
+    
+    return gulp.src(config.jsBundle)
+        .pipe(uglify())
+        .pipe(rename('bundle.min.js'))
+        .pipe(gulp.dest(config.jsDest));
+});
+
+gulp.task('fonts', function() {    
     return gulp.src(config.fontSrc)
         .pipe(debug({title: 'fonts'}))
-        .pipe(gulp.dest(config.fontDir));
+        .pipe(gulp.dest(config.fontDest));
 });
 
 gulp.task('images', function(){
-    return gulp.src('./public/img/**')
+    return gulp.src(config.imageSrc)
         .pipe(imagemin())
         .pipe(debug({title: 'images'}))
-        .pipe(gulp.dest('./public/dist/img'));
+        .pipe(gulp.dest(config.imageDest));
 });
 
 
@@ -90,19 +100,16 @@ gulp.task('inject', function () {
     
     var files = gulp.src(config.injectFiles, {read: false});
     
-    var options = {
-        ignorePath: '/public'
-    };
+    var options = { ignorePath: '/public' };
  
     return gulp.src(config.injectSrc)
         .pipe(inject(files, options))
         .pipe(gulp.dest(config.injectDest));
 });
 
-
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('jslint', ['css', 'js', 'fonts', 'images'], 
+    runSequence('jslint', ['css', 'uglify', 'fonts', 'images'], 
                 'inject', callback);
 });
 
