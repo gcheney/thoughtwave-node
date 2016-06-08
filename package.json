@@ -1,6 +1,6 @@
 {
-  "name": "coder-tutorials",
-  "version": "0.0.0",
+  "name": "thoughtwave",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -12,7 +12,8 @@
     "ejs": "~2.3.4",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "express-uncapitalize": "~1.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
