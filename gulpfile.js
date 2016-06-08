@@ -21,13 +21,15 @@ var config = {
     bowerDir: './public/lib',
     jsDir: 'public/dist/js',
     jsFiles: 'public/js/*.js',
-    mainJs: 'public/js/scripts.js',
+    jsSource: 'public/js/scripts.js',
     cssDir: 'public/dist/css',
     cssFiles: 'public/css/*.css',
     jsAssets: ['*.js', 'app_server/**/*.js', 'public/js/*.js'],
     fontSrc: [ 'public/lib/font-awesome/fonts/**.*', 
               'public/lib/bootstrap/fonts/**.*'],
     fontDir: 'public/dist/fonts',
+    imageSrc: './public/img/**',
+    imageDest: './public/dist/img',
     injectFiles: ['./public/dist/**/*.js', './public/dist/**/*.css'],
     injectSrc: './app_server/views/partials/*.ejs',
     injectDest: './app_server/views/partials'
@@ -60,20 +62,21 @@ gulp.task('css', function() {
 		.pipe(gulp.dest(config.cssDir));
 });
 
-/*
-gulp.task('js', function () {
-    console.log('Minifying and concatenating JS...');
-
-	gulp.src(bowerFiles().concat(config.jsFiles))
-		.pipe(filter('/*.js'))
-        .pipe(debug({title: 'js'}))
-        .pipe(order(['jquery.min.js', '*']))
-		.pipe(concat('main.js'))
-		.pipe(uglify())
-        .pipe(rename('main.min.js'))
-		.pipe(gulp.dest(config.jsDir));
+gulp.task('browserify', function() {
+    console.log('Bundling and minifying JS...');
+    
+    return browserify(config.jsSource)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest(config.jsDir));
 });
-*/
+
+gulp.task('uglify', ['browserify'], function() {
+  return gulp.src(config.jsDir + 'bundle.js')
+    .pipe(uglify())
+    .pipe(rename('bundle.min.js'))
+    .pipe(gulp.dest(config.jsDir));
+});
 
 gulp.task('fonts', function() {    
     return gulp.src(config.fontSrc)
@@ -82,17 +85,10 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('images', function(){
-    return gulp.src('./public/img/**')
+    return gulp.src(config.imageSrc)
         .pipe(imagemin())
         .pipe(debug({title: 'images'}))
-        .pipe(gulp.dest('./public/dist/img'));
-});
-
-gulp.task('browserify', function() {
-    return browserify(config.mainJs)
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest(config.jsDir));
+        .pipe(gulp.dest(config.imageDest));
 });
 
 
@@ -112,7 +108,7 @@ gulp.task('inject', function () {
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('jslint', ['css', 'browserify', 'fonts', 'images'], 
+    runSequence('jslint', ['css', 'uglify', 'fonts', 'images'], 
                 'inject', callback);
 });
 
