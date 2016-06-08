@@ -13,12 +13,15 @@ var gulp        = require('gulp'),
     cssnano     = require('gulp-cssnano'),
     order       = require('gulp-order'),
     debug       = require('gulp-debug'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    browserify  = require('browserify'),
+    source      = require('vinyl-source-stream');
 
 var config = {
     bowerDir: './public/lib',
     jsDir: 'public/dist/js',
     jsFiles: 'public/js/*.js',
+    mainJs: 'public/js/scripts.js',
     cssDir: 'public/dist/css',
     cssFiles: 'public/css/*.css',
     jsAssets: ['*.js', 'app_server/**/*.js', 'public/js/*.js'],
@@ -57,11 +60,12 @@ gulp.task('css', function() {
 		.pipe(gulp.dest(config.cssDir));
 });
 
+/*
 gulp.task('js', function () {
     console.log('Minifying and concatenating JS...');
 
 	gulp.src(bowerFiles().concat(config.jsFiles))
-		.pipe(filter('**/*.js'))
+		.pipe(filter('/*.js'))
         .pipe(debug({title: 'js'}))
         .pipe(order(['jquery.min.js', '*']))
 		.pipe(concat('main.js'))
@@ -69,9 +73,9 @@ gulp.task('js', function () {
         .pipe(rename('main.min.js'))
 		.pipe(gulp.dest(config.jsDir));
 });
+*/
 
-gulp.task('fonts', function() {
-    
+gulp.task('fonts', function() {    
     return gulp.src(config.fontSrc)
         .pipe(debug({title: 'fonts'}))
         .pipe(gulp.dest(config.fontDir));
@@ -82,6 +86,13 @@ gulp.task('images', function(){
         .pipe(imagemin())
         .pipe(debug({title: 'images'}))
         .pipe(gulp.dest('./public/dist/img'));
+});
+
+gulp.task('browserify', function() {
+    return browserify(config.mainJs)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest(config.jsDir));
 });
 
 
@@ -99,10 +110,9 @@ gulp.task('inject', function () {
         .pipe(gulp.dest(config.injectDest));
 });
 
-
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('jslint', ['css', 'js', 'fonts', 'images'], 
+    runSequence('jslint', ['css', 'browserify', 'fonts', 'images'], 
                 'inject', callback);
 });
 
