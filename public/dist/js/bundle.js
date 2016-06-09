@@ -9815,6 +9815,21 @@ return jQuery;
 }));
 
 },{}],2:[function(require,module,exports){
+var $               = require('jquery'),
+    navigationSlide = require('./scripts/navigationSlide'),
+    starHoverFill   = require('./scripts/starHoverFill'),
+    capitalize      = require('./scripts/capitalize');
+
+
+$(document).ready(function() {
+    navigationSlide();
+    starHoverFill('.star');
+});
+},{"./scripts/capitalize":3,"./scripts/navigationSlide":4,"./scripts/starHoverFill":5,"jquery":1}],3:[function(require,module,exports){
+module.exports = function(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+},{}],4:[function(require,module,exports){
 // Navigation script to Show Header on Scroll-Up
 var $ = require('jquery');
 
@@ -9848,16 +9863,7 @@ module.exports = function() {
         );
     }
 };
-},{"jquery":1}],3:[function(require,module,exports){
-var $ = require('jquery');
-var navigationSlide = require('./navigationSlide');
-var starHoverFill = require('./starHoverFill');
-
-$(document).ready(function() {
-    navigationSlide();
-    starHoverFill('.star');
-});
-},{"./navigationSlide":2,"./starHoverFill":4,"jquery":1}],4:[function(require,module,exports){
+},{"jquery":1}],5:[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = function(selector) {
@@ -9869,4 +9875,4 @@ module.exports = function(selector) {
             $(this).removeClass('fa-star');
         });
 };
-},{"jquery":1}]},{},[3]);
+},{"jquery":1}]},{},[2]);
