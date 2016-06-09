@@ -1,11 +1,11 @@
-var $               = require('jquery'),
-    navigationSlide = require('./scripts/navigationSlide'),
-    starHoverFill   = require('./scripts/starHoverFill'),
-    capitalize      = require('./scripts/capitalize');
+var $               = require('jquery');
+var navigationSlide = require('./scripts/navigationSlide');
+var starHoverFill   = require('./scripts/starHoverFill');
+var capitalize      = require('./scripts/capitalize');
 
 
 $(document).ready(function() {
     navigationSlide();
-    capitalize('.cap');
+    capitalize('cap');
     starHoverFill('.star');
 });

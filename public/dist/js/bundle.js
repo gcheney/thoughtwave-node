@@ -9815,18 +9815,28 @@ return jQuery;
 }));
 
 },{}],2:[function(require,module,exports){
-var $               = require('jquery'),
-    navigationSlide = require('./scripts/navigationSlide'),
-    starHoverFill   = require('./scripts/starHoverFill'),
-    capitalize      = require('./scripts/capitalize');
+var $               = require('jquery');
+var navigationSlide = require('./scripts/navigationSlide');
+var starHoverFill   = require('./scripts/starHoverFill');
+var capitalize      = require('./scripts/capitalize');
 
 
 $(document).ready(function() {
     navigationSlide();
+    capitalize('cap');
     starHoverFill('.star');
 });
+
 },{"./scripts/capitalize":3,"./scripts/navigationSlide":4,"./scripts/starHoverFill":5,"jquery":1}],3:[function(require,module,exports){
-module.exports = function(str) {
+module.exports = function(className) {
+    var elems = document.getElementsByClassName(className);
+    for (var i = 0; i < elems.length; i++) {
+        var content = elems[i].textContent;
+        elems[i].textContent = capitalize(content);
+    }
+}
+
+function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 },{}],4:[function(require,module,exports){
