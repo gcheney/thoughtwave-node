@@ -22,7 +22,7 @@ var config = {
     jsDest: 'public/dist/js',
     jsSrc: 'public/js/scripts.js',
     jsDir: 'public/js',
-    jsBundle: './public/js/bundle.js',
+    jsBundle: './public/dist/js/bundle.js',
     jsAssets: ['*.js', 'app_server/**/*.js', 'public/js/*.js'],
     cssDest: 'public/dist/css',
     cssSrc: 'public/css/*.css',
@@ -31,7 +31,7 @@ var config = {
     fontDest: 'public/dist/fonts',
     imageSrc: './public/img/**',
     imageDest: './public/dist/img',
-    injectFiles: ['./public/dist/**/*.js', './public/dist/**/*.css'],
+    injectFiles: ['./public/dist/**/*.min.js', './public/dist/**/*.css'],
     injectSrc: './app_server/views/partials/*.ejs',
     injectDest: './app_server/views/partials'
 };
@@ -69,7 +69,7 @@ gulp.task('browserify', function() {
     return browserify(config.jsSrc)
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest(config.jsDir));
+        .pipe(gulp.dest(config.jsDest));
 });
 
 gulp.task('uglify', ['browserify'], function() {
