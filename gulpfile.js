@@ -15,7 +15,8 @@ var gulp        = require('gulp'),
     debug       = require('gulp-debug'),
     runSequence = require('run-sequence'),
     browserify  = require('browserify'),
-    source      = require('vinyl-source-stream');
+    source      = require('vinyl-source-stream'),
+    clean       = require('gulp-clean');
 
 var config = {
     bowerDir: './public/lib',
@@ -49,6 +50,12 @@ gulp.task('jslint', function() {
         .pipe(jshint.reporter(stylish));
 });
 
+gulp.task('clean', function () {
+    console.log('Cleaning dist folder...');
+    
+	return gulp.src(config.jsDest, {read: false})
+		.pipe(clean());
+});
 
 gulp.task('css', function() {
     console.log('Minifying and concatenating CSS...');
@@ -109,7 +116,7 @@ gulp.task('inject', function () {
 
 gulp.task('build', function (callback) {
     console.log('Building files...');
-    runSequence('jslint', ['css', 'uglify', 'fonts', 'images'], 
+    runSequence('clean', 'jslint', ['css', 'uglify', 'fonts', 'images'], 
                 'inject', callback);
 });
 
