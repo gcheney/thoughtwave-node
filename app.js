@@ -5,11 +5,11 @@ var express      = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
     uncapitalize = require('express-uncapitalize'),
-    routes       = require('./app_server/routes/index'),
+    routes       = require('./src/routes/index'),
     app          = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app_server', 'views'));
+app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
 //app configuration

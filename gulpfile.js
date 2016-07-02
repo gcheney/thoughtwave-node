@@ -24,7 +24,7 @@ var config = {
     jsSrc: 'public/js/main.js',
     jsDir: 'public/js',
     jsBundle: './public/dist/js/bundle.js',
-    jsAssets: ['*.js', 'app_server/**/*.js', 'public/js/**/*.js'],
+    jsAssets: ['*.js', 'src/**/*.js', 'public/js/**/*.js'],
     cssDest: 'public/dist/css',
     cssSrc: 'public/css/*.css',
     fontSrc: [ 'public/lib/font-awesome/fonts/**.*', 
@@ -33,8 +33,8 @@ var config = {
     imageSrc: './public/img/**',
     imageDest: './public/dist/img',
     injectFiles: ['./public/dist/**/*.min.js', './public/dist/**/*.css'],
-    injectSrc: './app_server/views/partials/*.ejs',
-    injectDest: './app_server/views/partials'
+    injectSrc: './src/views/partials/*.ejs',
+    injectDest: './src/views/partials'
 };
 
 gulp.task('bower', function() {

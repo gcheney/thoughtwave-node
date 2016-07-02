@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('coder-tutorials:server');
+var debug = require('debug')('thoughtwave:server');
 var http = require('http');
 
 /**
