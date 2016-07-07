@@ -122,7 +122,8 @@ gulp.task('build', function (callback) {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch(config.jsAssets, ['jslint', 'build']);
+    gulp.watch(config.jsAssets, ['build']);
+    gulp.watch(config.cssSrc, ['build']);
 });
 
 gulp.task('serve', ['build'], function () {

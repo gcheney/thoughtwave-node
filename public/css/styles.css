@@ -85,8 +85,8 @@ a {
 
     @media only screen and (min-width: 768px) {
       .navbar-custom {
-        background: transparent;
-        border-bottom: 1px solid transparent;
+        background-color: #000000;
+        border-bottom: 1px solid black;
       }
 
       .navbar-custom .navbar-brand {
