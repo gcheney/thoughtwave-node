@@ -43,8 +43,7 @@
                                     </a>
                                     <img class="img-responsive" src="<%= post.imageUrl %>" alt="Article Image">
                                     <div class="well well-lg clearfix">
-                                        <img alt="User Image" src="<%= post.author.avatar %>" 
-                                             class="pull-left user-img img-circle">
+                                        <img alt="User Image" src="<%= post.author.avatar %>" class="pull-left user-img img-circle">
                                         <p class="text-muted">
                                             Posted by <a href="#"><%= post.author.name %></a> on <%= post.date %> in 
                                             <a href="/browse/<%=post.category%>"><%= post.category %></a>
@@ -53,8 +52,6 @@
                                             <%= post.lead %>
                                         </p>
                                         <hr />
-                                        <a href="#" class="pull-left"><i class="fa fa-star-o star" aria-hidden="true"></i></a>
-                                        <strong class="text-info">&nbsp; <%= post.stars %></strong>
                                         <a href="/read" class="btn pull-right">
                                             Read More <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                         </a>
