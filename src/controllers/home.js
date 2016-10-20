@@ -10,7 +10,6 @@ module.exports.index = function(req, res) {
             title: 'Bernie Sanders Rally Draws Massive Crowd',
             date: 'September 18, 2015',
             category: 'Politics',
-            stars: 22,
             lead: 'Senator Bernie Sanders defiantly vowed again on Sunday to take his campaign to the Democratic National Convention this summer, even as Hillary Clinton edged closer to clinching the party’s presidential nomination and the final primary contests drew near.',
             imageUrl: '/dist/img/rally.jpg',
             author: {
@@ -21,7 +20,6 @@ module.exports.index = function(req, res) {
             title: 'Syria is Bleeding Silently',
             date: 'October 20, 2014',
             category: 'World',
-            stars: 31,
             lead: 'Initially, the Syrian government relied mainly on its armed forces, but since 2014 local protection units made up of volunteers known as National Defence Force have come to play a larger role, gradually becoming the primary military force of the Syrian state. From the early stages, the Syrian government received technical, financial, military and political support from Russia.',
             imageUrl: '/dist/img/syria.jpg',
             author: {
@@ -32,7 +30,6 @@ module.exports.index = function(req, res) {
             title: 'Apple is Making a Comeback with Zombie Steve Jobs',
             date: 'September 24, 2014',
             category: 'Technology',
-            stars: 44,
             lead: 'Zombie Steve Jobs has been leading Apple on to great things this quarter, as the stocks continue to soar pending his undead announcement of the Zombiphone. This is shaping up to be an exciting week int he world of technology. ',
             imageUrl: '/dist/img/jobs-zombie.jpg',
             author: {
@@ -49,9 +46,9 @@ module.exports.about = function(req, res) {
         title: 'Thought Wave - About',
         header: {
             title: 'About Thought Wave',
-            subtitle: 'This is who we are.'
+            subtitle: 'This is what we do.'
         },
-        content: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>'
+        content: '<p>Thoughtwave is a blogging platform dedicated to making it easy to share your thoughts with the world.</p><p>Get in touch <a href="/contact">here</a>.</p>'
     });
 };
 
@@ -61,7 +58,7 @@ module.exports.contact = function(req, res) {
         title: 'Thought Wave - Contact',
         header: {
             title: 'Contact Us',
-            subtitle: 'Send us a message to let us know your thoughts.'
+            subtitle: 'Send me a message to let us know your thoughts.'
         },
         lead: 'Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!',
         social: {

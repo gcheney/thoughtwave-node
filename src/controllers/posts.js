@@ -10,7 +10,6 @@ module.exports.index = function(req, res) {
         posts: [{
             title: 'Bernie Sanders Rally Draws Massive Crowd',
             date: 'September 18, 2015',
-            stars: 22,
             category: 'Politics',
             lead: 'Senator Bernie Sanders defiantly vowed again on Sunday to take his campaign to the Democratic National Convention this summer, even as Hillary Clinton edged closer to clinching the party’s presidential nomination and the final primary contests drew near.',
             imageUrl: '/dist/img/rally.jpg',
