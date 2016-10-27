@@ -2,6 +2,7 @@ var express      = require('express'),
     path         = require('path'),
     favicon      = require('serve-favicon'),
     logger       = require('morgan'),
+    compress     = require('compression'),   
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
     uncapitalize = require('express-uncapitalize'),
@@ -14,10 +15,15 @@ app.set('view engine', 'ejs');
 
 //app configuration
 app.use(favicon(path.join(__dirname, 'public','dist', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+if (process.env.NODE_ENV === 'development') {
+    app.use(logger('dev'));
+} else if (process.env.NODE_ENV === 'production') {
+    app.use(compress());
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 
